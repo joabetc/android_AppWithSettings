@@ -1,6 +1,7 @@
 package com.joabe.appwithsettings;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,6 +15,7 @@ import androidx.preference.PreferenceManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean switchPref = sharedPref
+                .getBoolean(SettingsActivity.KEY_PREF_EXAMPLE_SWITCH, false);
+        Toast.makeText(this, switchPref.toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
